@@ -57,10 +57,17 @@ class NocoDBRequestsClient(NocoDBClient):
             "POST", self.__api_info.get_table_uri(project, table), json=body
         ).json()
 
-    def table_row_detail(self, project: NocoDBProject, table: str, row_id: int) -> dict:
+    def table_row_detail(
+        self,
+        project: NocoDBProject,
+        table: str,
+        row_id: int,
+        params: Optional[dict] = None,
+    ) -> dict:
         return self._request(
             "GET",
             self.__api_info.get_row_detail_uri(project, table, row_id),
+            params=params,
         ).json()
 
     def table_row_update(
